@@ -17,6 +17,9 @@
     <button id="colorcode_op" onclick="op('rgb','rgbColorCode')">rgbカラーコードを表示</button>
     <button id="createURL" onclick="op('+url','createURL')">URLを作る</button>
     <input id="color_inp" placeholder="rgbカラーコードを入力" style="display:none">
+    <br>
+    <br>
+    <p id=url_op></p>
 </body>
 <script>
     const  El = [
@@ -24,7 +27,8 @@
         document.getElementById("switch_on"),
         document.getElementById("switch_off"),
         document.getElementById("color_inp"),
-        document.getElementById("createURL")
+        document.getElementById("createURL"),
+        document.getElementById("url_op")
     ]
     Color = [
         "rgb(0, 0, 0)",/*色管理用(今の色)*/
@@ -101,6 +105,10 @@
             op("rgb", "作る", false)
             data[1]=`${url.href}?text=${encodeURI(El[0].value)}&color=${Color[3].join("").replaceAll(NaN,"00")}&mode=${data[0] ?? "on"}`
             alert(data[1])
+            El[5].innerHTML=`5秒後にurlは非表示になります<br><br>${data[1]}`
+            setTimeout(()=>{
+                El[5].innerHTML=""
+            },5000)
         }
     }
 </script>
